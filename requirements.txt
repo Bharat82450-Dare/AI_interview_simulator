@@ -1,0 +1,36 @@
+# Core Flask
+click>=7.0
+Flask==2.2.2
+Werkzeug==2.3.6
+
+# Database & Migrations
+Flask-SQLAlchemy==3.0.2
+SQLAlchemy==1.4.45
+Flask-Migrate==4.0.4
+
+# Forms & Validation
+email-validator==2.0.0.post2
+Flask-WTF==1.0.1
+WTForms==3.0.1
+
+# Deployment & Utilities
+supervisor==4.2.5
+Flask-Static-Digest==0.2.1
+Flask-Caching>=1.7.2
+Flask-DebugToolbar==0.13.1
+environs
+
+# AI & NLP
+google-generativeai
+gcloud
+google-cloud-texttospeech
+spacy
+sentence-transformers
+scikit-learn
+marshmallow==3.19.0
+pypdf
+
+# Development & Tools
+black
+regex
+mpg123
