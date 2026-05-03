@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='build/favicon.ico') }}">
+    <title>{% block page_title %}Interview Simulator{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <meta name="description" content="{% block meta_description %}AI-powered interview training with measurable analytics.{% endblock %}" />
+    <meta name="author" content="{% block meta_author %}{% endblock %}" />
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='build/main_css.bundle.css') }}" />
+    {% block css %}{% endblock %}
+  </head>
+  <body class="{% block body_class %}{% endblock %}">
+    {% block body %}
+      {% with form=form %}
+        {% include "nav.html" %}
+      {% endwith %}
+
+      <header>{% block header %}{% endblock %}</header>
+
+      <main role="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div class="alerts-container">
+              {% for category, message in messages %}
+                <div class="alert-premium">
+                  <span>{{ message }}</span>
+                  <a class="close" title="Close" href="#" data-dismiss="alert">&times;</a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+      </main>
+
+      {% include "footer.html" %}
+
+      <script src="{{ url_for('static', filename='build/main_js.bundle.js') }}"></script>
+      {% block js %}{% endblock %}
+    {% endblock %}
+  </body>
+</html>

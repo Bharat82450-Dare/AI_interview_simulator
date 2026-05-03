@@ -1,0 +1,17 @@
+
+{% extends "layout.html" %}
+
+{% block page_title %}Page Not Found{% endblock %}
+
+{% block content %}
+<section class="cc-shell section-wrap cc-reveal" style="margin-top: 30px;">
+  <div class="section-head">
+    <span class="section-label">Page Not Found</span>
+    <h1 class="section-title">404</h1>
+    <p class="section-text">Sorry, that page does not exist.</p>
+    <div class="form-actions" style="justify-content: center; margin-top: 16px;">
+      <a href="{{ url_for('public.home') }}" class="cc-btn cc-btn--primary">Go Home</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

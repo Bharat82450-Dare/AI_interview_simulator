@@ -1,0 +1,18 @@
+<nav class="navbar-premium">
+  <a class="nav-brand" href="{{ url_for('public.home') }}">
+    <span class="brand-mark"></span>
+    InterviewFocus AI
+  </a>
+
+  <div class="nav-links">
+    <a class="nav-link-item" href="{{ url_for('public.home') }}">Home</a>
+    <a class="nav-link-item" href="{{ url_for('public.about') }}">Platform</a>
+    <a class="nav-link-item" href="{{ url_for('user.upload') }}">Setup</a>
+    <a class="nav-link-item" href="{{ url_for('user.home_logged_in') }}">Interview Lab</a>
+  </div>
+
+  <div class="nav-actions">
+    <a class="cc-btn cc-btn--ghost" href="{{ url_for('public.about') }}">How it Works</a>
+    <a class="cc-btn cc-btn--primary" href="{{ url_for('user.upload') }}">Start Session</a>
+  </div>
+</nav>

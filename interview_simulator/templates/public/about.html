@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block page_title %}InterviewFocus AI | Platform{% endblock %}
+{% block content %}
+<section class="section-band">
+  <div class="cc-shell story-grid">
+    <div class="section-head cc-reveal">
+      <span class="section-label">Platform</span>
+      <h1 class="section-title">A training system for better interview decisions.</h1>
+      <p class="section-text">
+        InterviewFocus AI connects role context, spoken practice, and answer analytics so candidates can move from vague preparation to specific improvement.
+      </p>
+      <div class="form-actions">
+        <a href="{{ url_for('user.upload') }}" class="cc-btn cc-btn--primary">
+          <i class="fa-solid fa-play"></i>
+          Launch Session
+        </a>
+      </div>
+    </div>
+
+    <div class="product-frame cc-reveal">
+      <div class="product-topbar">
+        <div class="window-controls"><span></span><span></span><span></span></div>
+        <strong>Readiness System</strong>
+        <span>Updated now</span>
+      </div>
+      <div class="product-main">
+        <div class="kpi-row">
+          <div class="kpi-tile"><span>Depth</span><strong>84</strong></div>
+          <div class="kpi-tile"><span>Clarity</span><strong>91</strong></div>
+          <div class="kpi-tile"><span>STAR</span><strong>76</strong></div>
+          <div class="kpi-tile"><span>Growth</span><strong>+18%</strong></div>
+        </div>
+        <div class="analytics-area">
+          <div class="chart-panel"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <div class="coach-panel">
+            <span class="panel-kicker">Recommendation</span>
+            <div class="coach-bubble" style="margin-top: 14px;">Use a sharper result statement before moving to the technical details.</div>
+            <div class="coach-bubble" style="margin-top: 10px;">Add one stakeholder or business metric to prove impact.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-band alt">
+  <div class="cc-shell">
+    <div class="section-head center cc-reveal">
+      <span class="section-label">Core Modules</span>
+      <h2 class="section-title">Everything in the interface supports the next answer.</h2>
+    </div>
+
+    <div class="bento-grid">
+      <article class="cc-card span-4 cc-reveal">
+        <div class="cc-card__icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h3 class="cc-card__title">Adaptive prompting</h3>
+        <p class="cc-card__desc">Questions are generated from resume strengths, job requirements, and realistic hiring signals.</p>
+      </article>
+      <article class="cc-card span-4 cc-reveal">
+        <div class="cc-card__icon"><i class="fa-solid fa-brain"></i></div>
+        <h3 class="cc-card__title">Answer evaluation</h3>
+        <p class="cc-card__desc">Responses are scored against expected content, keywords, and overall answer quality.</p>
+      </article>
+      <article class="cc-card span-4 cc-reveal">
+        <div class="cc-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="cc-card__title">Progress analytics</h3>
+        <p class="cc-card__desc">Session results become a practical map of what to practice next.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section-band">
+  <div class="cc-shell">
+    <div class="workflow-rail cc-reveal">
+      <div class="workflow-card"><strong>1</strong><h3>Upload</h3><p>Resume and role context shape the simulation.</p></div>
+      <div class="workflow-card"><strong>2</strong><h3>Interview</h3><p>Voice responses create realistic pressure and pacing.</p></div>
+      <div class="workflow-card"><strong>3</strong><h3>Analyze</h3><p>Scores and feedback show exactly where answers drift.</p></div>
+      <div class="workflow-card"><strong>4</strong><h3>Repeat</h3><p>New sessions convert weak spots into repeatable strengths.</p></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

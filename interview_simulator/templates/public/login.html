@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="dashboard-container animate-fade-in" style="max-width: 500px;">
+    <div class="premium-card">
+        <h1 style="margin-bottom: 0.5rem; text-align: center;">Welcome Back</h1>
+        <p style="color: var(--text-secondary); text-align: center; margin-bottom: 2rem;">Sign in to continue your interview practice.</p>
+        
+        <form id="loginForm" method="POST" action="{{ url_for('public.login') }}" role="form">
+            {{ form.csrf_token }}
+            
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">Username</label>
+                {{form.username(placeholder="Enter your username", style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-primary); border-radius: 8px; padding: 0.8rem; width: 100%;")}}
+            </div>
+            
+            <div style="margin-bottom: 2rem;">
+                <label style="display: block; margin-bottom: 0.4rem; font-size: 0.9rem;">Password</label>
+                {{form.password(placeholder="••••••••", style="background: var(--bg-elevated); border: 1px solid var(--border-subtle); color: var(--text-primary); border-radius: 8px; padding: 0.8rem; width: 100%;")}}
+            </div>
+
+            <button type="submit" class="btn-premium" style="width: 100%; padding: 1rem;">Sign In</button>
+        </form>
+        
+        <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary); font-size: 0.9rem;">
+            Don't have an account? <a href="{{ url_for('public.register') }}" style="color: var(--accent-secondary)">Sign Up</a>
+        </p>
+    </div>
+</div>
+{% endblock %}

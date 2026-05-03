@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block page_title %}InterviewFocus AI | Member Area{% endblock %}
+{% block content %}
+<section class="cc-shell section-wrap cc-reveal" style="margin-top: 30px;">
+  <div class="section-head" style="text-align: left;">
+    <span class="section-label">Member Area</span>
+    <h1 class="section-title">Welcome, {{ current_user.username }}</h1>
+    <p class="section-text" style="margin: 0;">
+      Your workspace is ready. Configure your session inputs, then run a full AI interview simulation.
+    </p>
+  </div>
+
+  <div class="form-actions" style="margin-top: 20px;">
+    <a href="{{ url_for('user.upload') }}" class="cc-btn cc-btn--primary">Open Session Setup</a>
+    <a href="{{ url_for('user.home_logged_in') }}" class="cc-btn cc-btn--secondary">Go to Interview Lab</a>
+  </div>
+</section>
+{% endblock %}

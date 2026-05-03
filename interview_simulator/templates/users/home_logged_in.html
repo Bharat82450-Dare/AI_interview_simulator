@@ -1,0 +1,313 @@
+{% extends "layout.html" %}
+{% block page_title %}InterviewFocus AI | Interview Lab{% endblock %}
+{% block content %}
+<section class="dashboard-container">
+  <div class="dashboard-grid">
+    <div class="dashboard-side cc-reveal">
+      <div class="premium-card">
+        <h3 style="margin: 0 0 8px; font-family: var(--font-display);">Session Steps</h3>
+        <p style="margin: 0 0 12px; color: var(--text-muted); font-size: 0.88rem;">
+          Complete each stage in sequence and review coaching after every response.
+        </p>
+        <div class="progress-steps">
+          <div id="dot-intro" class="step-dot active">Intro</div>
+          <div id="dot-q1" class="step-dot">Q1</div>
+          <div id="dot-q2" class="step-dot">Q2</div>
+          <div id="dot-q3" class="step-dot">Q3</div>
+        </div>
+      </div>
+
+      <div class="premium-card">
+        <h3 style="margin: 0 0 12px; font-family: var(--font-display);">Performance Dimensions</h3>
+        <div class="metric-list">
+          <div class="metric-card">
+            <h4>Answer Relevance</h4>
+            <p>How closely your response maps to expected interview content.</p>
+          </div>
+          <div class="metric-card">
+            <h4>Keyword Coverage</h4>
+            <p>Coverage of role-specific language and technical depth indicators.</p>
+          </div>
+          <div class="metric-card">
+            <h4>Overall Interview Score</h4>
+            <p>A blended score used to benchmark progress between sessions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="cc-reveal">
+      <div class="interviewer-card animate-fade-in">
+        <div class="status-badge" id="statusLabel">Ready to begin</div>
+        <img src="{{ static_url_for('static', filename='build/interviewer.jpeg') }}" alt="Interviewer avatar" class="interviewer-img">
+        <h2 id="interviewerName">Alex</h2>
+        <p id="interviewerTitle">Hiring Manager</p>
+
+        <div id="instructionText" style="margin: 18px 0 22px;">
+          Start your personalized interview session.
+          <br><small>Need to update context first? Go to <a href="{{ url_for('user.upload') }}" style="color: var(--accent);">Session Setup</a>.</small>
+        </div>
+
+        <button id="startGameButton" class="btn-premium">
+          <span id="loadingIcon" style="display: none; margin-right: 4px;"><i class="fa fa-spinner fa-spin"></i></span>
+          Initialize Interview
+        </button>
+
+        <div id="gameContent" style="display: none;">
+          <div id="questionDisplay"></div>
+
+          <div class="record-btn-container">
+            <button id="recordButton" class="record-btn-large">
+              <i id="recordIcon" class="fa-solid fa-microphone"></i>
+            </button>
+            <div id="recordLabel">Start Recording</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="feedbackSection" style="display: none;" class="animate-fade-in">
+        <div class="premium-card">
+          <h3 style="margin: 0 0 12px; font-family: var(--font-display);">Evaluation Results</h3>
+
+          <div id="scoresDisplay" class="score-container">
+            <div class="score-card">
+              <span id="scoreOverall" class="score-value">--</span>
+              <span class="score-label">Overall</span>
+            </div>
+            <div class="score-card">
+              <span id="scoreSimilarity" class="score-value">--</span>
+              <span class="score-label">Relevance</span>
+            </div>
+            <div class="score-card">
+              <span id="scoreKeyword" class="score-value">--</span>
+              <span class="score-label">Keywords</span>
+            </div>
+          </div>
+
+          <div id="feedbackBubble" class="feedback-bubble">
+            Waiting for your response...
+          </div>
+
+          <div id="transcriptionDisplay" style="margin-top: 10px; font-size: 0.84rem; font-style: italic;"></div>
+        </div>
+
+        <div style="text-align: center; margin-top: 14px;">
+          <button id="nextStepButton" class="btn-secondary" style="display: none;">Continue to Next Question</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="dashboard-side cc-reveal">
+      <div class="premium-card">
+        <h3 style="margin: 0 0 12px; font-family: var(--font-display);">Live Analytics</h3>
+        <div class="kpi-row" style="grid-template-columns: 1fr 1fr;">
+          <div class="kpi-tile"><span>Target</span><strong>85</strong></div>
+          <div class="kpi-tile"><span>Streak</span><strong>3</strong></div>
+        </div>
+        <div class="chart-panel" style="height: 150px; margin-top: 12px;">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="premium-card">
+        <h3 style="margin: 0 0 12px; font-family: var(--font-display);">Coach Queue</h3>
+        <div class="coach-bubble">Use a concise situation statement before describing the task.</div>
+        <div class="coach-bubble" style="margin-top: 10px;">End each response with an outcome or measurable result.</div>
+      </div>
+    </aside>
+  </div>
+
+  <form id="transcribeForm" style="display: none;">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+  </form>
+</section>
+
+<script>
+  const startGameButton = document.getElementById('startGameButton');
+  const gameContent = document.getElementById('gameContent');
+  const instructionText = document.getElementById('instructionText');
+  const questionDisplay = document.getElementById('questionDisplay');
+  const statusLabel = document.getElementById('statusLabel');
+  const recordButton = document.getElementById('recordButton');
+  const recordIcon = document.getElementById('recordIcon');
+  const recordLabel = document.getElementById('recordLabel');
+  const feedbackSection = document.getElementById('feedbackSection');
+  const nextStepButton = document.getElementById('nextStepButton');
+
+  let gameData;
+  let currentStep = 'intro';
+  let mediaRecorder;
+  let chunks = [];
+
+  const steps = ['intro', 'question_1', 'question_2', 'question_3'];
+  const dots = {
+    intro: document.getElementById('dot-intro'),
+    question_1: document.getElementById('dot-q1'),
+    question_2: document.getElementById('dot-q2'),
+    question_3: document.getElementById('dot-q3'),
+  };
+
+  const updateStepUI = (step) => {
+    Object.values(dots).forEach((dot) => dot.classList.remove('active'));
+    dots[step].classList.add('active');
+
+    if (step === 'intro') {
+      statusLabel.textContent = 'Introduction';
+      questionDisplay.textContent = gameData.intro;
+    } else {
+      const index = steps.indexOf(step);
+      statusLabel.textContent = `Question ${index}`;
+      questionDisplay.textContent = gameData[step];
+    }
+  };
+
+  const startInterview = async () => {
+    const loadingIcon = document.getElementById('loadingIcon');
+    loadingIcon.style.display = 'inline-block';
+    startGameButton.disabled = true;
+
+    try {
+      const uploadCheck = await fetch('/users/check_uploads');
+      const uploadData = await uploadCheck.json();
+
+      if (!uploadData.uploaded) {
+        alert('Please upload your resume and job description first.');
+        loadingIcon.style.display = 'none';
+        startGameButton.disabled = false;
+        return;
+      }
+
+      const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+      const response = await fetch('/users/start_game', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfToken,
+        },
+        body: JSON.stringify({
+          resume: uploadData.resume,
+          job_description: uploadData.job_description,
+        }),
+      });
+
+      gameData = await response.json();
+
+      const introAudio = new Audio(`data:audio/mp3;base64,${gameData.intro_audio}`);
+      introAudio.play().catch(() => {});
+
+      startGameButton.style.display = 'none';
+      instructionText.style.display = 'none';
+      gameContent.style.display = 'block';
+      updateStepUI('intro');
+    } catch (error) {
+      alert('Error initializing interview. Check your API keys and try again.');
+      loadingIcon.style.display = 'none';
+      startGameButton.disabled = false;
+    }
+  };
+
+  recordButton.onclick = async () => {
+    if (recordButton.classList.contains('recording')) {
+      mediaRecorder.stop();
+      recordButton.classList.remove('recording');
+      recordIcon.className = 'fa-solid fa-microphone';
+      recordLabel.textContent = 'Processing...';
+      recordButton.disabled = true;
+      return;
+    }
+
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      chunks = [];
+
+      mediaRecorder.ondataavailable = (event) => chunks.push(event.data);
+      mediaRecorder.onstop = processRecording;
+      mediaRecorder.start();
+
+      recordButton.classList.add('recording');
+      recordIcon.className = 'fa-solid fa-stop';
+      recordLabel.textContent = 'Recording...';
+    } catch (error) {
+      alert('Microphone access denied or not available.');
+    }
+  };
+
+  const processRecording = async () => {
+    const blob = new Blob(chunks, { type: 'audio/webm' });
+    const csrfToken = document.querySelector('input[name="csrf_token"]').value;
+    const formData = new FormData();
+
+    formData.append('audio', blob, 'recording.webm');
+    formData.append('question', gameData[currentStep]);
+
+    feedbackSection.style.display = 'block';
+    document.getElementById('feedbackBubble').textContent = 'Analyzing your response...';
+
+    try {
+      const response = await fetch('/users/transcribe', {
+        method: 'POST',
+        headers: { 'X-CSRFToken': csrfToken },
+        body: formData,
+      });
+      const data = await response.json();
+
+      document.getElementById('transcriptionDisplay').textContent = `"${data.transcription}"`;
+      document.getElementById('feedbackBubble').textContent = data.response;
+
+      if (data.scores) {
+        const s = data.scores;
+        document.getElementById('scoreOverall').textContent = Math.round(s.overall);
+        document.getElementById('scoreSimilarity').textContent = Math.round(s.similarity);
+        document.getElementById('scoreKeyword').textContent = Math.round(s.keyword);
+
+        const color = s.overall >= 70 ? '#22c55e' : (s.overall >= 40 ? '#f59e0b' : '#ef4444');
+        document.getElementById('scoreOverall').style.color = color;
+      }
+
+      const audio = new Audio(`data:audio/mp3;base64,${data.audio}`);
+      audio.play().catch(() => {});
+
+      const currentIndex = steps.indexOf(currentStep);
+      if (currentIndex < steps.length - 1) {
+        nextStepButton.style.display = 'inline-block';
+        nextStepButton.textContent = `Move to ${steps[currentIndex + 1].replace('_', ' ')}`;
+      } else {
+        nextStepButton.style.display = 'inline-block';
+        nextStepButton.textContent = 'Finish Interview';
+        nextStepButton.onclick = () => {
+          window.location.href = "{{ url_for('user.upload') }}";
+        };
+      }
+    } catch (error) {
+      document.getElementById('feedbackBubble').textContent = 'Connection error. Please try again.';
+    }
+
+    recordButton.disabled = false;
+    recordLabel.textContent = 'Start Recording';
+  };
+
+  nextStepButton.onclick = () => {
+    const currentIndex = steps.indexOf(currentStep);
+    dots[currentStep].classList.add('completed');
+    currentStep = steps[currentIndex + 1];
+
+    updateStepUI(currentStep);
+
+    const audioKey = `${currentStep}_audio`;
+    if (gameData[audioKey]) {
+      const audio = new Audio(`data:audio/mp3;base64,${gameData[audioKey]}`);
+      audio.play().catch(() => {});
+    }
+
+    feedbackSection.style.display = 'none';
+    nextStepButton.style.display = 'none';
+    document.getElementById('scoreOverall').textContent = '--';
+    document.getElementById('scoreSimilarity').textContent = '--';
+    document.getElementById('scoreKeyword').textContent = '--';
+    document.getElementById('transcriptionDisplay').textContent = '';
+  };
+
+  startGameButton.addEventListener('click', startInterview);
+</script>
+{% endblock %}
