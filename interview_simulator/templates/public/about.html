@@ -1,18 +1,18 @@
 {% extends "layout.html" %}
-{% block page_title %}InterviewFocus AI | Platform{% endblock %}
+{% block page_title %}InterviewFocus AI Prep Copilot | Platform{% endblock %}
 {% block content %}
 <section class="section-band">
   <div class="cc-shell story-grid">
     <div class="section-head cc-reveal">
       <span class="section-label">Platform</span>
-      <h1 class="section-title">A training system for better interview decisions.</h1>
+      <h1 class="section-title">A practical NLP product for interview preparation.</h1>
       <p class="section-text">
-        InterviewFocus AI connects role context, spoken practice, and answer analytics so candidates can move from vague preparation to specific improvement.
+        InterviewFocus AI Prep Copilot helps users understand job requirements, ask preparation questions, and create cleaner role briefs from long-form text.
       </p>
       <div class="form-actions">
-        <a href="{{ url_for('user.upload') }}" class="cc-btn cc-btn--primary">
-          <i class="fa-solid fa-play"></i>
-          Launch Session
+        <a href="{{ url_for('user.prep_copilot') }}" class="cc-btn cc-btn--primary">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Open Copilot
         </a>
       </div>
     </div>
@@ -20,22 +20,22 @@
     <div class="product-frame cc-reveal">
       <div class="product-topbar">
         <div class="window-controls"><span></span><span></span><span></span></div>
-        <strong>Readiness System</strong>
+        <strong>Prep Copilot Console</strong>
         <span>Updated now</span>
       </div>
       <div class="product-main">
         <div class="kpi-row">
-          <div class="kpi-tile"><span>Depth</span><strong>84</strong></div>
+          <div class="kpi-tile"><span>Coverage</span><strong>88%</strong></div>
           <div class="kpi-tile"><span>Clarity</span><strong>91</strong></div>
-          <div class="kpi-tile"><span>STAR</span><strong>76</strong></div>
-          <div class="kpi-tile"><span>Growth</span><strong>+18%</strong></div>
+          <div class="kpi-tile"><span>Brevity</span><strong>74</strong></div>
+          <div class="kpi-tile"><span>Speed</span><strong>1.9s</strong></div>
         </div>
         <div class="analytics-area">
           <div class="chart-panel"><span></span><span></span><span></span><span></span><span></span><span></span></div>
           <div class="coach-panel">
-            <span class="panel-kicker">Recommendation</span>
-            <div class="coach-bubble" style="margin-top: 14px;">Use a sharper result statement before moving to the technical details.</div>
-            <div class="coach-bubble" style="margin-top: 10px;">Add one stakeholder or business metric to prove impact.</div>
+            <span class="panel-kicker">Insights</span>
+            <div class="coach-bubble" style="margin-top: 14px;">The concise summary is easier to scan before a recruiter call.</div>
+            <div class="coach-bubble" style="margin-top: 10px;">The detailed version keeps more tooling and qualification signals.</div>
           </div>
         </div>
       </div>
@@ -47,24 +47,24 @@
   <div class="cc-shell">
     <div class="section-head center cc-reveal">
       <span class="section-label">Core Modules</span>
-      <h2 class="section-title">Everything in the interface supports the next answer.</h2>
+      <h2 class="section-title">Everything in the interface supports better preparation.</h2>
     </div>
 
     <div class="bento-grid">
       <article class="cc-card span-4 cc-reveal">
-        <div class="cc-card__icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <h3 class="cc-card__title">Adaptive prompting</h3>
-        <p class="cc-card__desc">Questions are generated from resume strengths, job requirements, and realistic hiring signals.</p>
+        <div class="cc-card__icon"><i class="fa-solid fa-comments"></i></div>
+        <h3 class="cc-card__title">Prep assistant chat</h3>
+        <p class="cc-card__desc">Intent detection helps the assistant respond appropriately to candidate questions and support requests.</p>
       </article>
       <article class="cc-card span-4 cc-reveal">
         <div class="cc-card__icon"><i class="fa-solid fa-brain"></i></div>
-        <h3 class="cc-card__title">Answer evaluation</h3>
-        <p class="cc-card__desc">Responses are scored against expected content, keywords, and overall answer quality.</p>
+        <h3 class="cc-card__title">Dual-model summarization</h3>
+        <p class="cc-card__desc">Two transformer summarizers generate alternate role briefs for the same source text.</p>
       </article>
       <article class="cc-card span-4 cc-reveal">
         <div class="cc-card__icon"><i class="fa-solid fa-chart-line"></i></div>
-        <h3 class="cc-card__title">Progress analytics</h3>
-        <p class="cc-card__desc">Session results become a practical map of what to practice next.</p>
+        <h3 class="cc-card__title">Evaluation insights</h3>
+        <p class="cc-card__desc">Readability, coverage, speed, and advanced metrics make it easier to compare outputs.</p>
       </article>
     </div>
   </div>
@@ -73,10 +73,10 @@
 <section class="section-band">
   <div class="cc-shell">
     <div class="workflow-rail cc-reveal">
-      <div class="workflow-card"><strong>1</strong><h3>Upload</h3><p>Resume and role context shape the simulation.</p></div>
-      <div class="workflow-card"><strong>2</strong><h3>Interview</h3><p>Voice responses create realistic pressure and pacing.</p></div>
-      <div class="workflow-card"><strong>3</strong><h3>Analyze</h3><p>Scores and feedback show exactly where answers drift.</p></div>
-      <div class="workflow-card"><strong>4</strong><h3>Repeat</h3><p>New sessions convert weak spots into repeatable strengths.</p></div>
+      <div class="workflow-card"><strong>1</strong><h3>Paste Context</h3><p>Add the role description, company brief, or recruiter notes.</p></div>
+      <div class="workflow-card"><strong>2</strong><h3>Ask Questions</h3><p>Use the copilot to clarify fit, priorities, and talking points.</p></div>
+      <div class="workflow-card"><strong>3</strong><h3>Compare Outputs</h3><p>Review concise and detailed summary styles side by side.</p></div>
+      <div class="workflow-card"><strong>4</strong><h3>Choose Best Brief</h3><p>Keep the version that balances readability, coverage, and speed.</p></div>
     </div>
   </div>
 </section>

@@ -34,3 +34,9 @@ pypdf
 black
 regex
 mpg123
+
+# NLP Lab Requirements
+transformers
+torch
+rouge-score
+pandas

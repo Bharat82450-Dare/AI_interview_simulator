@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Core NLP Evaluation Engine for the interview simulator."""
+"""Core NLP evaluation engine for interview preparation scoring."""
 import spacy
 from sentence_transformers import SentenceTransformer
 from sklearn.feature_extraction.text import TfidfVectorizer

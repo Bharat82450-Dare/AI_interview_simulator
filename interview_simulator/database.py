@@ -2,7 +2,6 @@
 """Database module, including the SQLAlchemy database object and DB-related utilities."""
 from typing import Optional, Type, TypeVar
 
-from .compat import basestring
 from .extensions import db
 
 T = TypeVar("T", bound="PkModel")
@@ -61,7 +60,7 @@ class PkModel(Model):
         """Get record by ID."""
         if any(
             (
-                isinstance(record_id, basestring) and record_id.isdigit(),
+                isinstance(record_id, (str,)) and record_id.isdigit(),
                 isinstance(record_id, (int, float)),
             )
         ):

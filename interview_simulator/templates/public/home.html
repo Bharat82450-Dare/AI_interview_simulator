@@ -1,43 +1,43 @@
 {% extends "layout.html" %}
-{% block page_title %}InterviewFocus AI | AI Interview Training{% endblock %}
+{% block page_title %}InterviewFocus AI Prep Copilot | Smarter Interview Prep{% endblock %}
 {% block content %}
 <section class="hero-section cc-shell">
   <div class="hero-stage cc-reveal">
     <div class="hero-content">
-      <span class="hero-kicker">Interview training workspace</span>
-      <h1 class="hero-title">InterviewFocus AI</h1>
+      <span class="hero-kicker">Intent-aware interview prep workspace</span>
+      <h1 class="hero-title">InterviewFocus AI Prep Copilot</h1>
       <p class="hero-subtitle">
-        Role-specific mock interviews with voice practice, answer scoring, and progress analytics in one focused workspace.
+        Ask interview questions, turn long job descriptions into focused briefs, and compare summary quality in one polished NLP product.
       </p>
       <div class="hero-cta-row">
-        <a href="{{ url_for('user.upload') }}" class="cc-btn cc-btn--primary">
-          <i class="fa-solid fa-play"></i>
-          Start Free Session
+        <a href="{{ url_for('user.prep_copilot') }}" class="cc-btn cc-btn--primary">
+          <i class="fa-solid fa-wand-magic-sparkles"></i>
+          Open Prep Copilot
         </a>
         <a href="{{ url_for('public.about') }}" class="cc-btn cc-btn--secondary">
           <i class="fa-solid fa-chart-simple"></i>
           View Platform
         </a>
       </div>
-      <p class="hero-proof"><strong>Five-star workflow</strong>Built for candidates, career teams, and recruiters.</p>
+      <p class="hero-proof"><strong>Built for interview preparation</strong>Created for students, job seekers, and career mentors.</p>
     </div>
 
     <div class="floating-note left">
-      <strong>AI analyzing performance</strong>
-      <p>Clarity, relevance, keyword coverage, and answer structure.</p>
+      <strong>Role brief in seconds</strong>
+      <p>Extract the skills, focus areas, and likely talking points from dense job posts.</p>
     </div>
 
     <div class="floating-note right">
-      <strong>Next best drill</strong>
-      <p>Practice concise evidence-backed answers for behavioral prompts.</p>
+      <strong>Prep questions on demand</strong>
+      <p>Get help with role fit, resume positioning, recruiter prep, and support-style queries.</p>
     </div>
 
     <div class="product-showcase">
       <div class="product-frame">
         <div class="product-topbar">
           <div class="window-controls"><span></span><span></span><span></span></div>
-          <strong>Performance Dashboard</strong>
-          <span>Live session</span>
+          <strong>Prep Copilot Workspace</strong>
+          <span>Ready now</span>
         </div>
         <div class="product-workspace">
           <aside class="product-sidebar">
@@ -48,22 +48,22 @@
           </aside>
           <div class="product-main">
             <div class="kpi-row">
-              <div class="kpi-tile"><span>Overall</span><strong>87</strong></div>
-              <div class="kpi-tile"><span>Relevance</span><strong>92%</strong></div>
-              <div class="kpi-tile"><span>Keywords</span><strong>18</strong></div>
-              <div class="kpi-tile"><span>Duration</span><strong>4m</strong></div>
+              <div class="kpi-tile"><span>Coverage</span><strong>91%</strong></div>
+              <div class="kpi-tile"><span>Readability</span><strong>84</strong></div>
+              <div class="kpi-tile"><span>Brief Size</span><strong>122w</strong></div>
+              <div class="kpi-tile"><span>Latency</span><strong>2.1s</strong></div>
             </div>
             <div class="analytics-area">
               <div class="chart-panel">
                 <span></span><span></span><span></span><span></span><span></span><span></span>
               </div>
               <div class="coach-panel">
-                <span class="panel-kicker">Coach note</span>
+                <span class="panel-kicker">Copilot notes</span>
                 <div class="coach-bubble" style="margin-top: 14px;">
-                  Your answer has strong role alignment. Add one measurable outcome before closing.
+                  Emphasize Python automation, stakeholder communication, and dashboard ownership.
                 </div>
                 <div class="coach-bubble" style="margin-top: 10px;">
-                  Mention Python, stakeholders, and deployment impact in the next response.
+                  The concise summary is easier to scan; the detailed version retains more requirements.
                 </div>
               </div>
             </div>
@@ -77,28 +77,28 @@
 <section class="section-band">
   <div class="cc-shell">
     <div class="section-head center cc-reveal">
-      <span class="section-label">System</span>
-      <h2 class="section-title">A complete readiness loop, not a single practice form.</h2>
+      <span class="section-label">Product</span>
+      <h2 class="section-title">A focused NLP assistant for interview preparation.</h2>
       <p class="section-text">
-        Upload context, run a realistic interview, review scoring, then repeat with sharper evidence and better delivery.
+        The product combines intent-aware chat and model-based summarization so users can move from raw job information to clear preparation notes fast.
       </p>
     </div>
 
     <div class="bento-grid">
       <article class="cc-card span-4 cc-reveal">
+        <div class="cc-card__icon"><i class="fa-solid fa-comments"></i></div>
+        <h3 class="cc-card__title">Intent-aware chat</h3>
+        <p class="cc-card__desc">Understands greetings, help requests, information requests, farewells, and general conversation.</p>
+      </article>
+      <article class="cc-card span-4 cc-reveal">
         <div class="cc-card__icon"><i class="fa-solid fa-file-lines"></i></div>
-        <h3 class="cc-card__title">Resume-aware questions</h3>
-        <p class="cc-card__desc">Prompts adapt to your experience, target role, and required skills.</p>
+        <h3 class="cc-card__title">Role brief summaries</h3>
+        <p class="cc-card__desc">Convert long job descriptions and company notes into digestible summaries for faster prep.</p>
       </article>
       <article class="cc-card span-4 cc-reveal">
-        <div class="cc-card__icon"><i class="fa-solid fa-microphone-lines"></i></div>
-        <h3 class="cc-card__title">Voice-first practice</h3>
-        <p class="cc-card__desc">Answer out loud and build the rhythm of a real interview.</p>
-      </article>
-      <article class="cc-card span-4 cc-reveal">
-        <div class="cc-card__icon"><i class="fa-solid fa-gauge-high"></i></div>
-        <h3 class="cc-card__title">Measurable feedback</h3>
-        <p class="cc-card__desc">Track relevance, keyword coverage, and overall answer quality.</p>
+        <div class="cc-card__icon"><i class="fa-solid fa-chart-line"></i></div>
+        <h3 class="cc-card__title">Comparison insights</h3>
+        <p class="cc-card__desc">Review readability, coverage, speed, and advanced evaluation details without academic clutter.</p>
       </article>
     </div>
   </div>
@@ -108,23 +108,23 @@
   <div class="cc-shell story-grid">
     <div class="section-head cc-reveal">
       <span class="section-label">Workflow</span>
-      <h2 class="section-title">From raw experience to confident answers.</h2>
+      <h2 class="section-title">From raw role information to a useful prep brief.</h2>
       <p class="section-text">
-        The interface keeps every step visible so the user always knows what context is loaded, what question is active, and where improvement is happening.
+        Paste a role description, ask specific questions, compare two summary styles, and keep the strongest version for your preparation notes.
       </p>
       <div class="form-actions">
-        <a href="{{ url_for('user.upload') }}" class="cc-btn cc-btn--primary">
+        <a href="{{ url_for('user.prep_copilot') }}" class="cc-btn cc-btn--primary">
           <i class="fa-solid fa-arrow-right"></i>
-          Configure Session
+          Launch Workspace
         </a>
       </div>
     </div>
 
     <div class="workflow-rail cc-reveal">
-      <div class="workflow-card"><strong>1</strong><h3>Setup</h3><p>Paste resume and role context.</p></div>
-      <div class="workflow-card"><strong>2</strong><h3>Simulate</h3><p>Run a guided spoken interview.</p></div>
-      <div class="workflow-card"><strong>3</strong><h3>Evaluate</h3><p>Review structured scoring.</p></div>
-      <div class="workflow-card"><strong>4</strong><h3>Improve</h3><p>Repeat with targeted drills.</p></div>
+      <div class="workflow-card"><strong>1</strong><h3>Paste</h3><p>Add a job description, recruiter note, or company brief.</p></div>
+      <div class="workflow-card"><strong>2</strong><h3>Ask</h3><p>Use the copilot to clarify fit, requirements, and response angles.</p></div>
+      <div class="workflow-card"><strong>3</strong><h3>Summarize</h3><p>Generate concise and detailed versions side by side.</p></div>
+      <div class="workflow-card"><strong>4</strong><h3>Review</h3><p>Use quality signals and advanced metrics to choose the better brief.</p></div>
     </div>
   </div>
 </section>

@@ -11,26 +11,9 @@ PROJECT_ROOT = os.path.join(HERE, os.pardir)
 TEST_PATH = os.path.join(PROJECT_ROOT, "tests")
 
 
-@click.command()
-@click.option(
-    "-c/-C",
-    "--coverage/--no-coverage",
-    default=True,
-    is_flag=True,
-    help="Show coverage report",
-)
-def test(coverage):
-    """Run the tests."""
-    import pytest
-
-    args = [TEST_PATH, "--verbose"]
-    if coverage:
-        args.append("--cov=interview_simulator")
-    rv = pytest.main(args)
-    exit(rv)
-
 
 @click.command()
+
 @click.option(
     "-f",
     "--fix-imports",
