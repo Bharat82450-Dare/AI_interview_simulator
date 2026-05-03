@@ -1,13 +1,14 @@
 # IntervAI: AI Interview Simulator
 
-IntervAI is a premium AI-powered interview simulator designed to help candidates master their interview skills. Using **ChatGPT** for conversational intelligence, **Whisper** for speech-to-text, and **Google Text-to-Speech**, it provides a realistic, voice-enabled interview experience with constructive feedback.
+IntervAI is a premium AI-powered interview simulator designed to help candidates master their interview skills. Powered by **Gemini Flash 2.0 Lite**, it provides a realistic, voice-enabled interview experience with constructive feedback and real-time transcription.
 
 ## ✨ Features
 
-- **Tailored Sessions**: Analyzes your resume and the target job description to generate relevant questions.
-- **Voice Interaction**: Speak naturally with the AI interviewer using your microphone.
-- **Real-time Feedback**: Receive constructive coaching after each response to improve your performance.
-- **Premium UI**: Modern, responsive dashboard built with a focus on user experience.
+- **Gemini Powered**: Uses **Gemini Flash 2.0 Lite** for conversational intelligence, question generation, and audio transcription.
+- **Tailored Sessions**: Analyzes your resume and the target job description to create a customized interview flow.
+- **Voice Interaction**: Speak naturally with the AI interviewer; responses are synthesized using **Google Text-to-Speech**.
+- **Real-time Feedback**: Receive instant coaching and scoring based on semantic similarity and keyword coverage.
+- **Premium UI**: Modern, responsive dashboard focused on professional growth.
 
 ## 🚀 Quick Start
 
@@ -15,8 +16,8 @@ IntervAI is a premium AI-powered interview simulator designed to help candidates
 
 - Python 3.9+
 - Node.js & NPM (for asset compilation)
-- OpenAI API Key
-- Google Cloud Service Account (with TTS/STT enabled)
+- Google AI Studio API Key (for Gemini)
+- Google Cloud Service Account (for Text-to-Speech)
 
 ### Local Setup
 
@@ -30,13 +31,13 @@ IntervAI is a premium AI-powered interview simulator designed to help candidates
    Copy the example environment file and fill in your API keys.
    ```bash
    cp .env.example .env
-   # Edit .env with your OpenAI and Google credentials
+   # Edit .env with your GOOGLE_API_KEY and credentials
    ```
 
 3. **Install Dependencies**:
    ```bash
    # Install Python packages
-   pip install -r requirements.txt  # Or use pipenv/venv
+   pip install -r requirements.txt
    
    # Install Frontend packages
    npm install
@@ -57,20 +58,13 @@ IntervAI is a premium AI-powered interview simulator designed to help candidates
    ```
    Visit `http://localhost:5000` to start your session.
 
-## 🐳 Docker Setup
-
-If you prefer using Docker:
-```bash
-docker-compose build
-docker-compose up
-```
-
 ## 🛠️ Technology Stack
 
 - **Backend**: Flask (Python)
+- **AI Engine**: Gemini Flash 2.0 Lite (via Google Generative AI SDK)
+- **Voice**: Google Cloud Text-to-Speech
 - **Database**: SQLAlchemy (SQLite/PostgreSQL)
 - **Frontend**: Vanilla CSS, Webpack
-- **AI**: OpenAI API (GPT-4, Whisper), Google Cloud TTS
 
 ---
 
